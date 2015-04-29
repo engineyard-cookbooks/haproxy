@@ -26,6 +26,12 @@ defaults
 <% end -%>
   balance  <%= node['haproxy']['balance_algorithm'] %>
 
+<% if node['haproxy']['peers'] -%>
+peers haproxy_peers
+<% node['haproxy']['peers'].each do | name | -%>
+  peer <%= name %> <%= name %>:1024
+<% end %>
+<% end %>
 # Set up application listeners here.
 
 <% node['haproxy']['listeners'].each do |type, listeners | %>
