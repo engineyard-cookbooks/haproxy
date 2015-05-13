@@ -28,8 +28,8 @@ defaults
 
 <% if node['haproxy']['peers'] -%>
 peers haproxy_peers
-<% node['haproxy']['peers'].each do | peer | -%>
-  peer <%= peer['hostname'] %> <%= peer['hostname'] %>:<%= peer['port'] %>
+<% node['haproxy']['peers'].each do | hostname, port | -%>
+  peer <%= hostname %> <%= hostname %>:<%= port %>
 <% end %>
 <% end %>
 # Set up application listeners here.
